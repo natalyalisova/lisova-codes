@@ -16,9 +16,7 @@ import theme from '../../theme';
 import {ThemeProvider,} from '@mui/material/styles';
 import {Box} from '@mui/system';
 import Link from "next/link";
-
-const pages = ['Blog', 'About me', 'CV',];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import {NavLinks} from "@/app/constants";
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -48,7 +46,7 @@ function ResponsiveAppBar() {
                             variant="h6"
                             noWrap
                             component="a"
-                            href="#app-bar-with-responsive-menu"
+                            href="/"
                             sx={{
                                 mr: 2,
                                 display: {xs: 'none', md: 'flex'},
@@ -60,7 +58,6 @@ function ResponsiveAppBar() {
                         >
                             Lisova Codes
                         </Typography>
-
                         <Box sx={{color: 'violet.main', flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                             <IconButton
                                 size="large"
@@ -90,10 +87,15 @@ function ResponsiveAppBar() {
                                     display: {xs: 'block', md: 'none'},
                                 }}
                             >
-                                {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center"
-                                                    className="text-primary-color hover:text-primary-color-pail">{page}</Typography>
+                                {NavLinks.map((page) => (
+                                    <MenuItem key={page.key} onClick={handleCloseNavMenu}>
+                                        <Link
+                                            href={page.href}
+                                            target={page.target}
+                                            className="block text-primary-color hover:text-primary-color-pail mr-4"
+                                            aria-current="page">
+                                            {page.text}
+                                        </Link>
                                     </MenuItem>
                                 ))}
                             </Menu>
@@ -102,7 +104,7 @@ function ResponsiveAppBar() {
                             variant="h5"
                             noWrap
                             component="a"
-                            href="#app-bar-with-responsive-menu"
+                            href="/"
                             sx={{
                                 mr: 2,
                                 display: {xs: 'flex', md: 'none'},
@@ -116,17 +118,22 @@ function ResponsiveAppBar() {
                             Lisova Codes
                         </Typography>
                         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                            {pages.map((page) => (
+                            {NavLinks.map((page) => (
                                 <Button
-                                    key={page}
+                                    key={page.key}
                                     onClick={handleCloseNavMenu}
                                     sx={{my: 2, color: '#7D23DC', display: 'block'}}
                                 >
-                                    {page}
+                                    <Link
+                                        href={page.href}
+                                        target={page.target}
+                                        className="block text-primary-color hover:text-primary-color-pail mt-1"
+                                        aria-current="page">
+                                        {page.text}
+                                    </Link>
                                 </Button>
                             ))}
                         </Box>
-
                         <Box sx={{flexGrow: 0}}>
                             <Tooltip title="GitHub">
                                 <Link href="https://github.com/natalyalisova" target="_blank" rel="noopener noreferrer">
