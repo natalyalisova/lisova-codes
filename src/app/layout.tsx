@@ -3,8 +3,9 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import Footer from "@/app/components/Footer";
 import ResponsiveAppBar from "@/app/components/NavBar";
-import {ThemeProvider} from '@mui/material/styles';
 import theme from '../theme';
+import {AppRouterCacheProvider} from '@mui/material-nextjs/v14-appRouter';
+import {ThemeProvider} from '@mui/material/styles';
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -38,11 +39,13 @@ export default function RootLayout({
             <title>Lisova Codes</title>
         </head>
         <body className={inter.className}>
-        <ThemeProvider theme={theme}>
-            <ResponsiveAppBar/>
-            <main className="flex-grow">{children}</main>
-            <Footer/>
-        </ThemeProvider>
+        <AppRouterCacheProvider options={{enableCssLayer: true}}>
+            <ThemeProvider theme={theme}>
+                <ResponsiveAppBar/>
+                <main className="flex-grow">{children}</main>
+                <Footer/>
+            </ThemeProvider>
+        </AppRouterCacheProvider>
         </body>
         </html>
     );

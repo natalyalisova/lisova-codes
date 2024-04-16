@@ -1,6 +1,7 @@
 'use client';
 import {Roboto} from 'next/font/google';
-import {alpha, createTheme, getContrastRatio} from '@mui/material/styles';
+import {alpha, createTheme} from '@mui/material/styles';
+
 
 const roboto = Roboto({
     weight: ['300', '400', '500', '700'],
@@ -29,6 +30,9 @@ declare module '@mui/material/Button' {
 
 const violetBase = '#974FE3';
 const violetMain = '#7D23DC';
+const complementaryColor = '#82DC23';
+const complementaryColorPail = '#9BE34F';
+const additionalColor = '#FFAD00';
 
 const theme = createTheme({
     typography: {
@@ -39,7 +43,7 @@ const theme = createTheme({
             main: violetMain,
             light: violetBase,
             dark: alpha(violetBase, 0.9),
-            contrastText: getContrastRatio(violetMain, '#fff') > 4.5 ? '#fff' : '#111',
+            contrastText: complementaryColor,
         },
     },
 });
