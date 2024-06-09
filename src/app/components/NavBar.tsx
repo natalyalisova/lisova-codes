@@ -1,5 +1,6 @@
 "use client"
 import * as React from 'react';
+import Image from "next/image";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -126,16 +127,24 @@ function ResponsiveAppBar() {
                                 </Button>
                             ))}
                         </Box>
-                        <Box sx={{flexGrow: 0}}>
-                            <Tooltip title="GitHub">
+                        <Box sx={{flexGrow: 0, display: 'inline-flex'}}>
+                            <Tooltip title="GitHub" className="mr-2">
                                 <Link href="https://github.com/natalyalisova" target="_blank" rel="noopener noreferrer">
-                                    <GitHubIcon sx={{color: 'violet.main', mr: 2}}/>
+                                    <GitHubIcon sx={{color: 'violet.main'}}/>
                                 </Link>
                             </Tooltip>
-                            <Tooltip title="LinkedIn">
+                            <Tooltip title="LinkedIn"  className="mr-2">
                                 <Link href="https://www.linkedin.com/in/nlisova/" target="_blank"
                                       rel="noopener noreferrer">
                                     <LinkedInIcon sx={{color: 'violet.main'}}/>
+                                </Link>
+                            </Tooltip>
+                            <Tooltip title="Mastodon"  className="mr-2">
+                                <Link href="https://hachyderm.io/@Lisova" target="_blank" rel="me">
+                                    <Image src={"/images/mastodon-icon.svg"}
+                                           width={24}
+                                           height={24}
+                                           alt={"Follow me on mastodon"}/>
                                 </Link>
                             </Tooltip>
                         </Box>
