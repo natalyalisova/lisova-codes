@@ -142,9 +142,9 @@ function ResponsiveAppBar() {
                             <Tooltip title="Mastodon"  className="mr-2">
                                 <Link href="https://hachyderm.io/@Lisova" target="_blank" rel="me">
                                     <Image src={"/images/mastodon-icon.svg"}
-                                           width={24}
-                                           height={24}
-                                           alt={"Follow me on mastodon"}/>
+                                           width={20}
+                                           height={20}
+                                           alt={"Follow me on mastodon"} className="mt-0.5"/>
                                 </Link>
                             </Tooltip>
                         </Box>
