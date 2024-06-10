@@ -1,24 +1,42 @@
-import type {Metadata} from "next";
+'use client'
 import {Inter} from "next/font/google";
 import "./globals.css";
 import Footer from "@/app/components/Footer";
 import ResponsiveAppBar from "@/app/components/NavBar";
-import theme from '../theme';
 import {AppRouterCacheProvider} from '@mui/material-nextjs/v14-appRouter';
-import {ThemeProvider} from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {CssBaseline} from "@mui/material";
+import {ReactNode, useMemo, useState} from "react";
+import {ColorModeContext} from "@/app/components/ColorModeContext";
 
 const inter = Inter({subsets: ["latin"]});
-
-export const metadata: Metadata = {
-    title: "Lisova Codes",
-    description: "Personal blog",
-};
 
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) {
+
+    const [mode, setMode] = useState<'light' | 'dark'>('light');
+    const colorMode = useMemo(
+        () => ({
+            toggleColorMode: () => {
+                setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+            },
+        }),
+        [],
+    );
+
+    const theme = useMemo(
+        () =>
+            createTheme({
+                palette: {
+                    mode,
+                },
+            }),
+        [mode],
+    );
+
     return (
         <html lang="en">
         <head>
@@ -40,11 +58,14 @@ export default function RootLayout({
         </head>
         <body className={inter.className}>
         <AppRouterCacheProvider options={{enableCssLayer: true}}>
-            <ThemeProvider theme={theme}>
-                <ResponsiveAppBar/>
-                <main className="flex-grow">{children}</main>
-                <Footer/>
-            </ThemeProvider>
+            <ColorModeContext.Provider value={colorMode}>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline/>
+                    <ResponsiveAppBar/>
+                    <main className="flex-grow">{children}</main>
+                    <Footer/>
+                </ThemeProvider>
+            </ColorModeContext.Provider>
         </AppRouterCacheProvider>
         </body>
         </html>
