@@ -1,8 +1,14 @@
+'use client'
+import {ThemeProvider, useTheme} from "@mui/material/styles";
+
 const Footer = () => {
+    const theme = useTheme();
     return (
-        <div className="flex flex-row align-baseline items-center px-24 py-6 text-sm">
-            <div className="text-white">2024 &#169; By Nataliia Lisova</div>
-        </div>
+        <ThemeProvider theme={theme}>
+            <div className="flex flex-row align-baseline items-center px-24 pb-16 text-sm">
+                <div>2024 &#169; By Nataliia Lisova</div>
+            </div>
+        </ThemeProvider>
     )
 }
 export default Footer;

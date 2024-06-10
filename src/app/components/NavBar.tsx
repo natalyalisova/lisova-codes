@@ -1,6 +1,6 @@
 "use client"
 import * as React from 'react';
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import {ThemeProvider, useTheme} from '@mui/material/styles';
@@ -21,10 +21,11 @@ import {NavLinks} from "@/app/constants";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import {ColorModeContext} from "@/app/components/ColorModeContext";
+import {violetMain} from "@/theme";
 
 
 function ResponsiveAppBar() {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -37,12 +38,11 @@ function ResponsiveAppBar() {
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
 
-
     return (
         <ThemeProvider theme={theme}>
             <AppBar position="fixed">
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters className="px-2">
+                    <Toolbar disableGutters className="px-4">
                         <Typography
                             variant="h6"
                             noWrap
@@ -53,13 +53,13 @@ function ResponsiveAppBar() {
                                 display: {xs: 'none', md: 'flex'},
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
-                                color: 'violet.main',
+                                textColor: violetMain.main,
                                 textDecoration: 'none',
                             }}
                         >
                             Lisova Codes
                         </Typography>
-                        <Box sx={{color: 'violet.main', flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                        <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -93,7 +93,7 @@ function ResponsiveAppBar() {
                                         <Link
                                             href={page.href}
                                             target={page.target}
-                                            className="block text-primary-color hover:text-primary-color-pail mr-4"
+                                            className="block hover:text-primary-color-pail mx-6"
                                             aria-current="page">
                                             {page.text}
                                         </Link>
@@ -123,12 +123,12 @@ function ResponsiveAppBar() {
                                 <Button
                                     key={page.key}
                                     onClick={handleCloseNavMenu}
-                                    sx={{my: 2, color: '#7D23DC', display: 'block'}}
+                                    sx={{my: 2, display: 'block'}}
                                 >
                                     <Link
                                         href={page.href}
                                         target={page.target}
-                                        className="block text-primary-color hover:text-primary-color-pail mt-1"
+                                        className="block hover:text-primary-color-pail mt-1"
                                         aria-current="page">
                                         {page.text}
                                     </Link>
@@ -138,7 +138,6 @@ function ResponsiveAppBar() {
                         <Box sx={{flexGrow: 0, display: 'inline-flex'}}>
 
                             <span className="mr-2">
-                                    {theme.palette.mode} mode
                                 <IconButton sx={{ml: 1}} onClick={colorMode.toggleColorMode} color="inherit"
                                             className="ml-2">
                                  {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
@@ -147,21 +146,21 @@ function ResponsiveAppBar() {
 
                             <Tooltip title="GitHub" className="mr-2">
                                 <Link href="https://github.com/natalyalisova" target="_blank" rel="noopener noreferrer">
-                                    <GitHubIcon sx={{color: 'violet.main'}}/>
+                                    <GitHubIcon/>
                                 </Link>
                             </Tooltip>
                             <Tooltip title="LinkedIn" className="mr-2">
                                 <Link href="https://www.linkedin.com/in/nlisova/" target="_blank"
                                       rel="noopener noreferrer">
-                                    <LinkedInIcon sx={{color: 'violet.main'}}/>
+                                    <LinkedInIcon/>
                                 </Link>
                             </Tooltip>
                             <Tooltip title="Mastodon" className="mr-2">
                                 <Link href="https://hachyderm.io/@Lisova" target="_blank" rel="me">
                                     <Image src={"/images/mastodon-icon.svg"}
-                                           width={20}
-                                           height={20}
-                                           alt={"Follow me on mastodon"} className="mt-0.5"/>
+                                           width={26}
+                                           height={26}
+                                           alt={"Follow me on mastodon"}/>
                                 </Link>
                             </Tooltip>
                         </Box>
