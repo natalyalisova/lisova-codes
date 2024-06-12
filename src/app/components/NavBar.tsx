@@ -160,6 +160,7 @@ function ResponsiveAppBar() {
                                     <Image src={"/images/mastodon-icon.svg"}
                                            width={26}
                                            height={26}
+                                           priority={false}
                                            alt={"Follow me on mastodon"}/>
                                 </Link>
                             </Tooltip>

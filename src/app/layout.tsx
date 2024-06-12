@@ -28,19 +28,13 @@ export default function RootLayout({
 
     const getStoredTheme = () => {
 
+        let itemInStorage;
+        try {
+            itemInStorage = localStorage.getItem("theme-mode") || "dark";
+        } catch (error) {
+            console.error("Error retrieving theme-mode from localStorage:", error);
+        }
 
-
-        // let itemInStorage;
-        // try {
-        //     itemInStorage = localStorage.getItem("theme-mode") || "";
-        // } catch (error) {
-        //     console.error("Error retrieving theme-mode from localStorage:", error);
-        // }
-        //
-        //
-
-
-         const itemInStorage = localStorage.getItem('theme-mode');
         if (itemInStorage && ["light", "dark"].includes(itemInStorage)) return itemInStorage as "light" | "dark";
         return 'dark';
     }
