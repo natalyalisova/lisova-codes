@@ -1,9 +1,23 @@
+'use client'
+import {ThemeProvider, useTheme} from "@mui/material/styles";
+import Container from "@mui/material/Container";
+import Typography from '@mui/material/Typography';
+
 export default function Home() {
+    const theme = useTheme();
+
     return (
-        <div className="bg-gray-950 flex min-h-screen flex-col items-center place-content-center p-24">
-            <h1 className="text-2xl md:text-4xl font-semibold text-primary-color">Nataliia Lisova</h1>
-            <h2 className="md:text-xl mt-6 text-complementary-color">Personal blog</h2>
-            <p className="mt-36 text-complementary-color">Coming soon</p>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Container maxWidth="xl">
+                <div className="flex min-h-screen flex-col items-center place-content-center p-24">
+                    <Typography variant="h2" gutterBottom>
+                        Personal blog
+                    </Typography>
+                    <Typography variant="subtitle1">
+                        Coming soon
+                    </Typography>
+                </div>
+            </Container>
+        </ThemeProvider>
     );
 }

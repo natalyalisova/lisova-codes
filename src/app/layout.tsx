@@ -1,24 +1,69 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+'use client'
+import {Roboto} from "next/font/google";
 import "./globals.css";
 import Footer from "@/app/components/Footer";
 import ResponsiveAppBar from "@/app/components/NavBar";
-import theme from '../theme';
 import {AppRouterCacheProvider} from '@mui/material-nextjs/v14-appRouter';
-import {ThemeProvider} from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {CssBaseline} from "@mui/material";
+import {ReactNode, useMemo, useState} from "react";
+import {ColorModeContext} from "@/app/components/ColorModeContext";
+import {getDesignTokens} from "@/theme";
 
-const inter = Inter({subsets: ["latin"]});
+const roboto = Roboto({
+    weight: ['300', '400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+});
 
-export const metadata: Metadata = {
-    title: "Lisova Codes",
-    description: "Personal blog",
-};
 
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) {
+
+    const darkModeTheme = useMemo(() => createTheme(getDesignTokens('dark')), []);
+    const lightModeTheme = useMemo(() => createTheme(getDesignTokens('light')), []);
+
+    const getStoredTheme = () => {
+
+        let itemInStorage;
+        try {
+            itemInStorage = localStorage.getItem("theme-mode") || "dark";
+        } catch (error) {
+            console.error("Error retrieving theme-mode from localStorage:", error);
+        }
+
+        if (itemInStorage && ["light", "dark"].includes(itemInStorage)) return itemInStorage as "light" | "dark";
+        return 'dark';
+    }
+
+    const savedMode = getStoredTheme();
+    const [mode, setMode] = useState<'light' | 'dark'>(savedMode);
+
+    const colorMode = useMemo(
+        () => ({
+            toggleColorMode: () => {
+                setMode((prevMode) => {
+                    const newMode = prevMode === 'light' ? 'dark' : 'light';
+                    // Save the new mode in localStorage
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('theme-mode', newMode);
+                    }
+                    return newMode;
+                });
+            },
+        }),
+        [],
+    );
+
+
+    const theme = useMemo(
+        () => (mode === 'dark' ? darkModeTheme : lightModeTheme),
+        [mode, darkModeTheme, lightModeTheme]
+    );
+
     return (
         <html lang="en">
         <head>
@@ -38,13 +83,16 @@ export default function RootLayout({
 
             <title>Lisova Codes</title>
         </head>
-        <body className={inter.className}>
+        <body className={roboto.className}>
         <AppRouterCacheProvider options={{enableCssLayer: true}}>
-            <ThemeProvider theme={theme}>
-                <ResponsiveAppBar/>
-                <main className="flex-grow">{children}</main>
-                <Footer/>
-            </ThemeProvider>
+            <ColorModeContext.Provider value={colorMode}>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline/>
+                    <ResponsiveAppBar/>
+                    <main className="flex-grow">{children}</main>
+                    <Footer/>
+                </ThemeProvider>
+            </ColorModeContext.Provider>
         </AppRouterCacheProvider>
         </body>
         </html>

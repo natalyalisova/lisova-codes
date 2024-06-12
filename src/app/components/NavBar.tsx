@@ -1,9 +1,12 @@
 "use client"
 import * as React from 'react';
+import {useContext, useState} from 'react';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import {ThemeProvider, useTheme} from '@mui/material/styles';
 import Image from "next/image";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -13,14 +16,16 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MenuItem from '@mui/material/MenuItem';
 import {Typography} from "@mui/material";
-import theme from '../../theme';
-import {ThemeProvider,} from '@mui/material/styles';
-import {Box} from '@mui/system';
 import Link from "next/link";
 import {NavLinks} from "@/app/constants";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import {ColorModeContext} from "@/app/components/ColorModeContext";
+import {violetMain} from "@/theme";
+
 
 function ResponsiveAppBar() {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -30,28 +35,31 @@ function ResponsiveAppBar() {
         setAnchorElNav(null);
     };
 
+    const theme = useTheme();
+    const colorMode = useContext(ColorModeContext);
+
     return (
         <ThemeProvider theme={theme}>
-            <AppBar position="fixed" className="bg-gray-950">
+            <AppBar position="fixed">
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters>
+                    <Toolbar disableGutters className="px-4">
                         <Typography
                             variant="h6"
                             noWrap
                             component="a"
                             href="/"
                             sx={{
-                                mr: 2,
+                                mx: 2,
                                 display: {xs: 'none', md: 'flex'},
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
-                                color: 'violet.main',
+                                textColor: violetMain.main,
                                 textDecoration: 'none',
                             }}
                         >
                             Lisova Codes
                         </Typography>
-                        <Box sx={{color: 'violet.main', flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                        <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -85,7 +93,7 @@ function ResponsiveAppBar() {
                                         <Link
                                             href={page.href}
                                             target={page.target}
-                                            className="block text-primary-color hover:text-primary-color-pail mr-4"
+                                            className="block hover:text-primary-color-pail mx-6"
                                             aria-current="page">
                                             {page.text}
                                         </Link>
@@ -115,12 +123,12 @@ function ResponsiveAppBar() {
                                 <Button
                                     key={page.key}
                                     onClick={handleCloseNavMenu}
-                                    sx={{my: 2, color: '#7D23DC', display: 'block'}}
+                                    sx={{my: 2, display: 'block'}}
                                 >
                                     <Link
                                         href={page.href}
                                         target={page.target}
-                                        className="block text-primary-color hover:text-primary-color-pail mt-1"
+                                        className="block hover:text-primary-color-pail mt-1"
                                         aria-current="page">
                                         {page.text}
                                     </Link>
@@ -128,23 +136,32 @@ function ResponsiveAppBar() {
                             ))}
                         </Box>
                         <Box sx={{flexGrow: 0, display: 'inline-flex'}}>
+
+                            <span className="mr-2">
+                                <IconButton sx={{ml: 1}} onClick={colorMode.toggleColorMode} color="inherit"
+                                            className="ml-2">
+                                 {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
+                                 </IconButton>
+                            </span>
+
                             <Tooltip title="GitHub" className="mr-2">
                                 <Link href="https://github.com/natalyalisova" target="_blank" rel="noopener noreferrer">
-                                    <GitHubIcon sx={{color: 'violet.main'}}/>
+                                    <GitHubIcon/>
                                 </Link>
                             </Tooltip>
-                            <Tooltip title="LinkedIn"  className="mr-2">
+                            <Tooltip title="LinkedIn" className="mr-2">
                                 <Link href="https://www.linkedin.com/in/nlisova/" target="_blank"
                                       rel="noopener noreferrer">
-                                    <LinkedInIcon sx={{color: 'violet.main'}}/>
+                                    <LinkedInIcon/>
                                 </Link>
                             </Tooltip>
-                            <Tooltip title="Mastodon"  className="mr-2">
+                            <Tooltip title="Mastodon" className="mr-2">
                                 <Link href="https://hachyderm.io/@Lisova" target="_blank" rel="me">
                                     <Image src={"/images/mastodon-icon.svg"}
-                                           width={20}
-                                           height={20}
-                                           alt={"Follow me on mastodon"} className="mt-0.5"/>
+                                           width={26}
+                                           height={26}
+                                           priority={false}
+                                           alt={"Follow me on mastodon"}/>
                                 </Link>
                             </Tooltip>
                         </Box>
