@@ -51,7 +51,7 @@ function ResponsiveAppBar() {
                         component="a"
                         href="/"
                         sx={{
-                            ml: 12,
+                            ml: 8,
                             mr: 2,
                             display: {xs: 'none', md: 'flex'},
                             fontFamily: 'monospace',
@@ -96,12 +96,13 @@ function ResponsiveAppBar() {
                                     <Link
                                         href={page.href}
                                         target={page.target}
-                                        className="block text-white hover:text-purple-300 mx-6"
+                                        className="block text-white mx-6"
                                         aria-current="page">
                                         {page.text}
                                     </Link>
                                 </MenuItem>
                             ))}
+
                         </Menu>
                     </Box>
                     <Typography

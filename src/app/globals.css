@@ -3,8 +3,15 @@
 @tailwind utilities;
 
 :root {
-    --background-light: #fff;
-    --background-dark: #050209;
+    --background-color-light: #fff;
+    --text-color-light: #000;
+    --background-color-dark: #150825;
+    --text-color-dark: #fff;
+    --navbar-dropdown-background: #800bff;
+}
+
+[data-theme=dark] {
+    --navbar-dropdown-background: #110122;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,8 +49,7 @@ html {
     }
 }
 
-/*TODO rewrite shame CSS */
-.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
-    background-color: #800bff;
-}
 
+.MuiMenu-paper {
+    background-color: var(--navbar-dropdown-background);
+}
