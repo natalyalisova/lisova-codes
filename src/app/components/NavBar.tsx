@@ -96,7 +96,7 @@ function ResponsiveAppBar() {
                                     <Link
                                         href={page.href}
                                         target={page.target}
-                                        className="block text-primary-color hover:text-primary-color-pail mx-6"
+                                        className="block text-white hover:text-purple-300 mx-6"
                                         aria-current="page">
                                         {page.text}
                                     </Link>

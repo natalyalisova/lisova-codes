@@ -42,13 +42,8 @@ html {
     }
 }
 
-/*TODO rewrite shame CSS for dark theme*/
-/*.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {*/
-/*    background-color: #fff; !* Default light theme background *!*/
-/*}*/
+/*TODO rewrite shame CSS */
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    background-color: #800bff;
+}
 
-/*@media (prefers-color-scheme: dark) {*/
-/*    .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {*/
-/*        background-color: #050209; !* Dark theme background *!*/
-/*    }*/
-/*}*/
