@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 :root {
-    --foreground-rgb: 18, 34, 38;
-    --background-start-rgb: 18, 34, 38;
-    --background-end-rgb: 0, 0, 0;
+    --background-light: #fff;
+    --background-dark: #050209;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,6 +38,17 @@ html {
 
 @layer utilities {
     .text-balance {
-        text-wrap: normal;
+        text-wrap: balance;
     }
 }
+
+/*TODO rewrite shame CSS for dark theme*/
+/*.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {*/
+/*    background-color: #fff; !* Default light theme background *!*/
+/*}*/
+
+/*@media (prefers-color-scheme: dark) {*/
+/*    .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {*/
+/*        background-color: #050209; !* Dark theme background *!*/
+/*    }*/
+/*}*/
