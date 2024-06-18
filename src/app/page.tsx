@@ -1,23 +1,25 @@
-'use client'
-import {ThemeProvider, useTheme} from "@mui/material/styles";
 import Container from "@mui/material/Container";
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
 
 export default function Home() {
-    const theme = useTheme();
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container maxWidth="xl">
-                <div className="flex min-h-screen flex-col items-center place-content-center p-24">
-                    <Typography variant="h2" gutterBottom>
-                        Personal blog
-                    </Typography>
-                    <Typography variant="subtitle1">
-                        Coming soon
-                    </Typography>
-                </div>
-            </Container>
-        </ThemeProvider>
+        <Container maxWidth="xl">
+            <div className="flex flex-col min-h-full items-center justify-center dark:bg-black">
+                <Typography variant="h1" gutterBottom sx={{
+                    fontSize: {
+                        xs: '2rem',
+                        sm: '2.5rem',
+                        md: '4rem',
+                        lg: '5rem',
+                    },
+                }} className="text-primary-color dark:text-complementary-color" >
+                    Personal blog
+                </Typography>
+                <Typography variant="subtitle1" className="dark:text-white">
+                    Coming soon
+                </Typography>
+            </div>
+        </Container>
     );
 }

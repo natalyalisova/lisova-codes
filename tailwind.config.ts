@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
         colors: {
-          "primary-color": "#7D23DC",
+          "primary-color": "#800bff",
           "primary-color-pail": "#974FE3",
           "complementary-color": "#82DC23",
-          "complementary-color-pail": "#9BE34F",
+          "complementary-color-pail": "#76C20E",
           "additional-color":"#FFAD00"
         },
       backgroundImage: {
@@ -23,5 +23,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  darkMode: "class",
 };
 export default config;
