@@ -2,7 +2,6 @@
 import "./globals.css";
 import Footer from "@/app/components/Footer";
 import ResponsiveAppBar from "@/app/components/NavBar";
-import {CssBaseline} from "@mui/material";
 import {ReactNode} from "react";
 import {ThemeProvider} from "next-themes";
 
@@ -31,8 +30,8 @@ export default function RootLayout({
             <title>Lisova Codes</title>
         </head>
         <body className={`roboto.className dark:bg-black`}>
-        <ThemeProvider enableSystem={true} attribute="class">
-            <CssBaseline/>
+        <ThemeProvider attribute="class">
+            {/*<CssBaseline/>*/}
             <div className="flex flex-col min-h-screen">
                 <ResponsiveAppBar/>
                 <main className="flex-grow flex">{children}</main>
