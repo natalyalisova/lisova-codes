@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
         colors: {
-          "primary-color": "#800bff",
+          "primary-color": "#6F00E6",
           "primary-color-pail": "#974FE3",
           "complementary-color": "#82DC23",
           "complementary-color-pail": "#76C20E",
