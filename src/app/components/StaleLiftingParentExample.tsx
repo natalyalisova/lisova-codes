@@ -10,7 +10,7 @@ const StateLiftingParentExample = () => {
     };
 
     return (
-        <div className={`max-w-screen-lg flex-col text-center ${bgColor} border-2 border-primary-color-pail p-5 dark:text-white`}>
+        <div className={`max-w-screen-lg flex-col text-center ${bgColor} border-2 border-primary-color-pail p-5 dark:text-white mb-3`}>
             <h1 className="font-semibold mt-5">
                 Parent component
             </h1>
