@@ -1,9 +1,8 @@
 'use client'
 import { useState } from "react";
-import Typography from "@mui/material/Typography";
-import ChildComponentExample from "@/app/components/ChildComponentExample";
+import StateLiftingChildExample from "@/app/components/StatleLiftingChildExample";
 
-const ParentComponentExample = () => {
+const StateLiftingParentExample = () => {
     const [bgColor, setBgColor] = useState('dark:bg-black');
 
     const handleColorChange = (newColor: string) => {
@@ -29,9 +28,9 @@ const ParentComponentExample = () => {
 
                     •	Prop drilling: As with callback functions, state lifting can result in passing props down through multiple layers of components, making the code less maintainable.</p>
             </div>
-            <ChildComponentExample onColorChange={handleColorChange} />
+            <StateLiftingChildExample onColorChange={handleColorChange} />
         </div>
     );
 };
 
-export default ParentComponentExample;
+export default StateLiftingParentExample;

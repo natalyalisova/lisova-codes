@@ -4,7 +4,7 @@ interface ChildComponentProps{
     onColorChange:(color: string) => void;
 }
 
-const ChildComponentExample = ({ onColorChange }:  ChildComponentProps) => {
+const StatleLiftingChildExample = ({ onColorChange }:  ChildComponentProps) => {
     const handleColorChange = (color:string) => {
         onColorChange(color);
     }
@@ -23,6 +23,6 @@ const ChildComponentExample = ({ onColorChange }:  ChildComponentProps) => {
 
     )
 };
-export default ChildComponentExample;
+export default StatleLiftingChildExample;
 
 

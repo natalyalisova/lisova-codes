@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import ParetComponentExample from "@/app/components/ParetComponentExample";
+import StateLiftingParentExample from "@/app/components/StaleLiftingParentExample";
 
 export default function PracticePage() {
     return (
@@ -16,7 +16,7 @@ export default function PracticePage() {
                 }} className="text-primary-color dark:text-complementary-color">
                     Practice
                 </Typography>
-                <ParetComponentExample/>
+                <StateLiftingParentExample/>
             </div>
         </Container>
     );
